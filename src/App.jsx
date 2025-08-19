@@ -18,10 +18,6 @@ const routs = createBrowserRouter([
     element: <QuestionPage />,
   },
   {
-    path: "/questions",
-    element: <QuestionPage />,
-  },
-  {
     path: "/diploma",
     element: <DiplomaPage />,
   },
@@ -34,8 +30,7 @@ const routs = createBrowserRouter([
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 const App = () => {
-  //from context.jsx
-  const { isStart } = useCtx();
+
 
   //-----------------------------------------------------------
   return <RouterProvider router={routs} />;

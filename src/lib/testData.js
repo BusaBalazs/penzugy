@@ -1,3 +1,5 @@
+import LastQuestion from "../components/LastQuestion";
+
 export const question = [
   {
     id: 0,
@@ -190,9 +192,48 @@ export const question = [
       },
     ],
   },
-  
-  
 ];
+
+export const lastQuestions = {
+  id: 10,
+  question: "Milyen szimbólum található a képen látható pénzen?",
+  tasks: [
+    {
+      img: "",
+      answers: [
+        {
+          answer: "Kitartást és türelmet",
+          right: true,
+        },
+        {
+          answer: "Hogy mindig mindent azonnal megvegyél",
+          right: false,
+        },
+        {
+          answer: "Hogy a pénz végtelen",
+          right: false,
+        },
+      ],
+    },
+    {
+      img: "",
+      answers: [
+        {
+          answer: "másik",
+          right: true,
+        },
+        {
+          answer: "ez is másik",
+          right: false,
+        },
+        {
+          answer: "pláne másik",
+          right: false,
+        },
+      ],
+    },
+  ],
+};
 
 export const nextQrPlace = [
   "HUGI SZOBÁJÁBAN",

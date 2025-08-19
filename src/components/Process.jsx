@@ -10,7 +10,7 @@ const Process = ({ numOfQuestion, numOfAllQuestion }) => {
   const indicator = useRef();
 
   useEffect(() => {
-    const calculatedWidth = ((numOfQuestion + 1) / numOfAllQuestion) * 100;
+    const calculatedWidth = ((numOfQuestion + 1) / (numOfAllQuestion + 1)) * 100;
 
     gsap.to("#process", {
       width: `${calculatedWidth}%`,
@@ -25,7 +25,7 @@ const Process = ({ numOfQuestion, numOfAllQuestion }) => {
         <div className={classes["process-lines-container"]}>
           <p className={classes["num-of-question"]}>{`${
             numOfQuestion + 1
-          } / ${numOfAllQuestion}`} kérdés</p>
+          } / ${numOfAllQuestion + 1}`} kérdés</p>
           <span
             id="process"
             ref={indicator}

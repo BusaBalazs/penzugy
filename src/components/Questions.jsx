@@ -15,7 +15,7 @@ import classes from "./Questions.module.css";
 //-----------------------------------------------------------------
 import { question } from "../lib/testData";
 import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
-import { mandrakeSound } from "../assets";
+
 
 //-----------------------------------------------------------------
 
