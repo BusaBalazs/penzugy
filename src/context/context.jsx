@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 import { question } from "../lib/testData";
 
-import { db } from "../firebase";
+/*import { db } from "../firebase";
 import {
   collection,
   doc,
@@ -10,7 +10,7 @@ import {
   updateDoc,
   addDoc,
   Timestamp,
-} from "firebase/firestore";
+} from "firebase/firestore";*/
 
 //-------------------------------------------------------------
 const Ctx = createContext();

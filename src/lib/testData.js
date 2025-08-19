@@ -1,134 +1,209 @@
 export const question = [
   {
     id: 0,
-    question: "Mi a varázslók kedvelt itala?",
+    question: "Mi az okos spórolás első lépése?",
     operation: "",
     answers: [
       {
-        answer: "Vajsör",
+        answer: "Cél kitűzése (pl. új könyv)",
         right: true,
       },
       {
-        answer: "Kakaó",
+        answer: "Véletlenszerű költekezés",
         right: false,
       },
       {
-        answer: "Mézsör",
+        answer: "A bevétel elfelejtése",
         right: false,
       },
     ],
   },
   {
     id: 1,
-    question: "Melyik horcruxot pusztították el először?",
+    question: "Miért érdemes zsebpénzt kapni?",
     operation: "",
     answers: [
       {
-        answer: "A naplót",
+        answer: "Hogy gyakoroljuk a pénz beosztását",
         right: true,
       },
       {
-        answer: "A medált",
+        answer: "Hogy mindent azonnal elköltsünk",
         right: false,
       },
       {
-        answer: "A gyűrűt",
+        answer: "Hogy mindig több legyen, mint a szüleinknek",
         right: false,
       },
     ],
   },
   {
     id: 2,
-    question: "Milyen fajta sárkány volt Norbert, Hagrid kis kedvence?",
+    question: "Mit jelent a költségvetés?",
     operation: "",
     answers: [
       {
-        answer: "Norvég Tarajossárkány",
+        answer: "Egy terv, hogy mire költöm a pénzem",
         right: true,
       },
       {
-        answer: "Magyar Mennydörgő",
+        answer: "Egy lista a kedvenc játékokról",
         right: false,
       },
       {
-        answer: "Svéd Sróforrúsárkány",
+        answer: "Egy térkép az iskolába",
         right: false,
       },
     ],
   },
   {
     id: 3,
-    question: "Hol található a Szükség szobája?",
+    question: "Mire jó a persely?",
     operation: "",
     answers: [
       {
-        answer: "Hetedik emelet, baloldali folyosó",
+        answer: "Pénzt gyűjteni benne",
         right: true,
       },
       {
-        answer: "Harmadik emeleti folyosó, jobb oldali része",
+        answer: "Csak dísznek",
         right: false,
       },
       {
-        answer: "Alagsor, a Hugrabug klubhelyiséggel szemben",
+        answer: "Titkos naplónak",
         right: false,
       },
     ],
   },
   {
     id: 4,
-    question: "Mi Luna Lovegood patrónusa?",
+    question: "Melyik a legjobb, ha szeretnél új biciklit venni?",
     operation: "",
     answers: [
       {
-        answer: "Nyúl",
+        answer: "Minden nap félrerakni egy kis pénzt",
         right: true,
       },
       {
-        answer: "macska",
+        answer: "Azonnal elkölteni minden zsebpénzt",
         right: false,
       },
       {
-        answer: "pillangó",
+        answer: "Várni, hogy magától megjelenjen a bicikli",
         right: false,
       },
     ],
   },
   {
     id: 5,
-    question: "Mi a neve a Herbológia (növénytan) tantárgy tanárának?",
+    question: "Mit jelent, ha valaki takarékoskodik?",
     operation: "",
     answers: [
       {
-        answer: "Pomona Bimba",
+        answer: "Nem költi el azonnal a pénzét",
         right: true,
       },
       {
-        answer: "Severus Snape",
+        answer: "Soha nem használ pénzt",
         right: false,
       },
       {
-        answer: "Minerva McGalagony",
+        answer: "Mindig más pénzét költi",
         right: false,
       },
     ],
   },
   {
     id: 6,
-    question:
-      "Mi történik, ha valaki fülvédő nélkül hallgatja meg a mandragóra sikítását?",
+    question: "Miért jó összeírni, mire költötted a pénzt?",
     operation: "",
     answers: [
       {
-        answer: "meghal",
+        answer: "Hogy lásd, mire megy el, és tanulj belőle",
         right: true,
       },
       {
-        answer: "Elájul",
+        answer: "Hogy hosszú listád legyen",
         right: false,
       },
       {
-        answer: "Elalszik egy órára",
+        answer: "Hogy megmutasd a barátoknak",
+        right: false,
+      },
+    ],
+  },
+  {
+    id: 7,
+    question: "Mi a különbség a „szükség” és a „vágy” között?",
+    operation: "",
+    answers: [
+      {
+        answer: "Szükség: amire tényleg kell pénz (pl. étel), vágy: amit szeretnél (pl. játék)",
+        right: true,
+      },
+      {
+        answer: "Ugyanaz",
+        right: false,
+      },
+      {
+        answer: "Mindkettő játékot jelent",
+        right: false,
+      },
+    ],
+  },
+  {
+    id: 8,
+    question: "Miért érdemes először a szükségletekre költeni?",
+    operation: "",
+    answers: [
+      {
+        answer: "Mert azok fontosabbak a mindennapi élethez",
+        right: true,
+      },
+      {
+        answer: "Mert unalmasabbak",
+        right: false,
+      },
+      {
+        answer: "Mert akkor több marad a vágyakra",
+        right: false,
+      },
+    ],
+  },
+  {
+    id: 9,
+    question: "Mit tanulhatsz a spórolásból?",
+    operation: "",
+    answers: [
+      {
+        answer: "Kitartást és türelmet",
+        right: true,
+      },
+      {
+        answer: "Hogy mindig mindent azonnal megvegyél",
+        right: false,
+      },
+      {
+        answer: "Hogy a pénz végtelen",
+        right: false,
+      },
+    ],
+  },
+  {
+    id: 10,
+    question: "Melyik pénz látható a képen?",
+    operation: "",
+    answers: [
+      {
+        answer: "5 000",
+        right: true,
+      },
+      {
+        answer: "10 000",
+        right: false,
+      },
+      {
+        answer: "500",
         right: false,
       },
     ],

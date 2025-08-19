@@ -1,16 +1,24 @@
 .start-page {
   width: 100%;
   height: 100vh;
-  padding: 7em 1em 0 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  padding: 1.5em;
   font-family: var(--font-title);
   letter-spacing: 0.1em;
-  background: url("../assets/start_page_bg-min.png");
+  background: url("../assets/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: -180px;
+  background-position-x: -50px;
+}
+
+.card {
+  padding: 3em 2em;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 5px 15px rgba(60, 68, 68, 0.6);
+  border: 2px solid #e3edff52;
+  border-radius: var(--border-radius-s);
 }
 
 .welcome-text {
@@ -18,38 +26,30 @@
   margin-bottom: 1em;
   color: var(--color-white);
   text-wrap: balance;
+   text-shadow: 1px 2px 1px var(--blue-900);
+   font-weight: 600;
 }
 
 .welcome-text h2 {
+  font-size:clamp(20px, 2.4vw, 32px);
   margin-bottom: 1.5em;
-  color: var(--color-orage-100);
-}
-
-.btn-container {
-  width: 100%;
-}
-
-.snitch-img {
-  width: 55%;
-  position: relative;
-  left: 40%;
-  bottom: 30%;
+  text-shadow: 1px 2px 1px var(--blue-900);
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .start-btn {
   font-size: var(--font-size-xl);
   padding: 0.2em 1.1em;
+  margin-top: 1em;
   font-weight: 900;
   text-transform: uppercase;
-  color: var(--color-orage-100);
-  -webkit-text-stroke: 1px var(--color-orage-200);
-  background-color: var(--color-black-bg);
+  color: var(--blue-100);
+  background-color: #0b3a74cb;
   border-radius: var(--border-radius-s);
-  border-left: 2px solid var(--color-orage-100);
-  border-right: 2px solid var(--color-orage-100);
-  border-bottom: 1px solid var(--color-orage-100);
+  box-shadow: 0 10px 30px rgba(58, 146, 204, 0.4);
+  letter-spacing: 0.1em;
 }
-
 
 /*----------------------------------------------------------
 ----------------------------------------------------------*/
@@ -61,7 +61,6 @@
 .magic-wand-img {
   transform: rotateZ(180deg);
   width: 50%;
- 
 }
 
 .function-btn {

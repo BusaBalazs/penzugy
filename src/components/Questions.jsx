@@ -15,12 +15,7 @@ import classes from "./Questions.module.css";
 //-----------------------------------------------------------------
 import { question } from "../lib/testData";
 import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
-import {
-  imgNimbus as nimbusImg,
-  imgWand,
-  imgDiploma,
-  mandrakeSound,
-} from "../assets";
+import { mandrakeSound } from "../assets";
 
 //-----------------------------------------------------------------
 
@@ -60,7 +55,7 @@ const Questions = () => {
 
   const btns = useRef([]);
   const questionRef = useRef();
-  const { onTurn, isEnd, restart } = useCtx();
+  const { onTurn, isEnd } = useCtx();
 
   //---------------------------------------------------------------
 
@@ -139,10 +134,10 @@ const Questions = () => {
     } else {
       setAnswerIsTrue(false);
       //setBtn(e.target);
-
-      btns.current[index].style.backgroundColor = "rgba(194, 0, 0, 0.7)";
+console.log(btns.current[index]);
+      btns.current[index].style.background = "rgba(194, 0, 0, 0.7)";
       setTimeout(() => {
-        btns.current[index].style.backgroundColor = "";
+        btns.current[index].style.background = "";
         setAnswerIsTrue(true);
       }, 1500);
     }
@@ -222,9 +217,7 @@ const Questions = () => {
         modalText={feedback}
         actualQuestionNum={questionNum}
       />
-      <section
-        className={`${classes["container"]} ${classes[`bg-${questionNum}`]}`}
-      >
+      <section className={`${classes["container"]}`}>
         <div>
           <Process
             numOfQuestion={questionNum}
@@ -237,11 +230,6 @@ const Questions = () => {
             id="question-gsap"
             className={classes["question-container"]}
           >
-            <img
-              src={nimbusImg}
-              alt="nimbusz 2000"
-              className={classes["nimbus-img"]}
-            />
             <div className={classes["question"]}>
               <h2>{question[questionNum].question}</h2>
               <code>{question[questionNum].operation}</code>

@@ -86,8 +86,6 @@ const Modal = forwardRef(({ getScanId, modalText, actualQuestionNum }, ref) => {
                 {modalText.title}
               </h2>
 
-              <img src={imgWand} className="magic-wand-img" alt="magic wand" />
-
               <p
                 className={`${!modalText.qr ? classes.alert : null} ${
                   classes["feedback-p"]

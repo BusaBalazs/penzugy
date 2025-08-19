@@ -1,7 +1,7 @@
 export const ANSWER_FEEDBACK = {
   qr: true,
   title: "helyes a válasz!",
-  paragraphe: "Keresd meg a következő jelet!",
+  paragraphe: "Keresd meg a következő kódot!",
 };
 
 export const QR_FEEDBACK = {

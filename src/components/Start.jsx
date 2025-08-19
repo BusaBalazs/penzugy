@@ -6,9 +6,7 @@ import Leaderboard from "./Leaderboard.jsx";
 import { useCtx } from "../context/context";
 
 import classes from "./Start.module.css";
-//----------------------------------------------------------
 
-import { imgWand, imgSnitch } from "../assets/index.js";
 //-------------------------------------------------------
 //-------------------------------------------------------
 const Start = () => {
@@ -16,7 +14,7 @@ const Start = () => {
   const navigate = useNavigate();
 
   //from context.jsx
-  const { startGame, userName } = useCtx();
+  const { startGame } = useCtx();
 
   useEffect(() => {
     const loaded = () => {
@@ -33,12 +31,6 @@ const Start = () => {
           duration: 1,
           delay: 0.3,
         }
-      );
-
-      gsap.fromTo(
-        "#snitch",
-        { scale: 0.5, opacity: 0, x: -50 },
-        { scale: 1, opacity: 1, ease: "back.out", delay: 0.8, x: 0 }
       );
     };
 
@@ -64,26 +56,25 @@ const Start = () => {
   //-----------------------------------------------------------
   return (
     <>
-      <Leaderboard ref={leaderboard} />
+      {/* <Leaderboard ref={leaderboard} /> */}
       <section className={classes["start-page"]}>
-        <div onClick={handleStart} className={classes["btn-container"]}>
-          <button id="start-btn" className={classes["start-btn"]}>
-            start
-          </button>
-          <img
-            src={imgSnitch}
-            className={`${classes["snitch-img"]}`}
-            alt="gold snitch"
-            id="snitch"
-          />
-        </div>
-        <div className={classes["welcome-text"]}>
-          <h2>Üdv a varázsvilágban!</h2>
-          <p>Tedd próbára tudásod a Harry Potter világáról!</p>
-          <p>
-            Ha jól válaszolsz, jutalmul QR-kód vár rád! Olvasd be, és máris
-            jöhet a következő kérdés!
-          </p>
+        <div className={classes["card"]}>
+          <div className={classes["welcome-text"]}>
+            <h2>Induljon a játékos pénzügyi utazás!</h2>
+            <p>
+              Olvasd be a QR-kódot, válaszolj a kvízre, és ha jól teljesítesz, a
+              térkép segít továbblépni.
+            </p>
+            <p>
+              Szórakozva tanulhatod meg, hogyan gazdálkodj okosan a
+              zsebpénzeddel.
+            </p>
+          </div>
+          <div onClick={handleStart} className={classes["btn-container"]}>
+            <button id="start-btn" className={classes["start-btn"]}>
+              start
+            </button>
+          </div>
         </div>
       </section>
     </>

@@ -1,103 +1,64 @@
 /* backgrounds */
 /***********************************/
-
 .container {
   width: 100vw;
-  height: 100vmax;
   text-align: center;
-  overflow: hidden;
 }
 
 .question-section {
   padding: 1em;
 }
 
-.bg-0 {
-  background: no-repeat url("../assets/bg/bg_0-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-1 {
-  background: no-repeat url("../assets/bg/bg_1-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-2 {
-  background: no-repeat url("../assets/bg/bg_2-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-3 {
-  background: no-repeat url("../assets/bg/bg_3-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-4 {
-  background: no-repeat url("../assets/bg/bg_4-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-5 {
-  background: no-repeat url("../assets/bg/bg_5-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-6 {
-  background: no-repeat url("../assets/bg/bg_6-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-7 {
-  background: no-repeat url("../assets/bg/bg_7-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-8 {
-  background: no-repeat url("../assets/bg/bg_8-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-9 {
-  background: no-repeat url("../assets/bg/bg_9-min.png");
-  background-size: cover;
-  background-position: center;
-}
-
-@media screen and (orientation: landscape) {
-  .landscape-bg {
-    background-position: center;
-  }
-}
-
 /*********************************************/
 
 .question-container {
-  margin-bottom: 1.5em;
+  margin: 2.5em auto 1.5em auto;
+  background: linear-gradient(180deg, #d8e6f8, #fff);
+  border: 1px solid #cbdcfc;
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Decorative piggy and coins (pure CSS) */
+.question-container::before,
+.question-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(1px);
+}
+.question-container::before {
+  width: 160px;
+  height: 160px;
+  right: -60px;
+  top: -60px;
+  background: radial-gradient(
+    circle at 35% 35%,
+    var(--blue-300),
+    var(--blue-500)
+  );
+  opacity: 0.12;
+}
+.question-container::after {
+  width: 100px;
+  height: 100px;
+  left: -40px;
+  bottom: -40px;
+  background: radial-gradient(circle at 40% 40%, #ffd76a, #f0b515);
+  opacity: 0.18;
+  box-shadow: 0 0 0 10px rgba(255, 215, 106, 0.15);
 }
 
 .question {
   width: min(100%, 650px);
   padding: 0.3em;
-  background-color: var(--color-black-bg);
-  margin: auto;
-  color: var(--color-orage-100);
-  border-bottom: solid 1px var(--color-orage-100);
-  border-left: solid 2px var(--color-orage-100);
-  border-right: solid 2px var(--color-orage-100);
-  border-radius: var(--border-radius-s);
 }
 
 .question h2 {
-  font-size: var(--font-size-l);
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
 }
 
 .nimbus-img {
@@ -126,16 +87,15 @@
 
 .list li button {
   width: 100%;
-  padding: 0.5em;
-  font-size: var(--font-size-m);
-  background-color: var(--color-white-alpha);
-  border-left: solid 2px var(--color-orage-100);
-  border-right: solid 2px var(--color-orage-100);
+  padding: 1em 0.5em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(180deg, var(--blue-100), #fff);
+  border: 1px solid #e3edff;
   border-radius: var(--border-radius-s);
-  color: black;
+  color: #0b2e5b;
+  box-shadow: var(--shadow);
 }
-
-
 
 /* timer */
 /***********************************/
@@ -148,10 +108,12 @@
   justify-content: center;
   margin: 1em auto;
   padding: 0.65em 1em;
-  background-color: var(--color-black-bg);
-  color: var(--color-white);
+  font-weight: 700;
+  background-color: var(--green-400);
+  color: var(--color-black);
   border-radius: var(--border-radius-xl);
-  box-shadow: 0 0 4px var(--color-orage-200), 0 0 68px var(--color-orage-200);
+  box-shadow: var(--shadow);
+  border: 1px solid #e3edff;
 }
 
 /***************************************/
