@@ -5,6 +5,7 @@ import { useCtx } from "./context/context";
 import StartPage from "./pages/StartPage.jsx";
 import QuestionPage from "./pages/QuestionPage.jsx";
 import DiplomaPage from "./pages/DiplomaPage.jsx";
+import LastQuestionPage from "./pages/LastQuestionPage.jsx";
 
 //-----------------------------------------------------------
 const routs = createBrowserRouter([
@@ -23,6 +24,10 @@ const routs = createBrowserRouter([
   {
     path: "/diploma",
     element: <DiplomaPage />,
+  },
+  {
+    path: "/last",
+    element: <LastQuestionPage />,
   },
 ]);
 

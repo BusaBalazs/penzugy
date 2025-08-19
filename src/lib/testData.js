@@ -138,7 +138,8 @@ export const question = [
     operation: "",
     answers: [
       {
-        answer: "Szükség: amire tényleg kell pénz (pl. étel), vágy: amit szeretnél (pl. játék)",
+        answer:
+          "Szükség: amire tényleg kell pénz (pl. étel), vágy: amit szeretnél (pl. játék)",
         right: true,
       },
       {
@@ -189,25 +190,8 @@ export const question = [
       },
     ],
   },
-  {
-    id: 10,
-    question: "Melyik pénz látható a képen?",
-    operation: "",
-    answers: [
-      {
-        answer: "5 000",
-        right: true,
-      },
-      {
-        answer: "10 000",
-        right: false,
-      },
-      {
-        answer: "500",
-        right: false,
-      },
-    ],
-  },
+  
+  
 ];
 
 export const nextQrPlace = [

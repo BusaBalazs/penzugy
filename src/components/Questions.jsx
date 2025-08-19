@@ -116,25 +116,12 @@ const Questions = () => {
   // check the selected answer and add feedback if it is wrong
   const isOk = (e, index, answer) => {
     if (answer) {
-      // if the answer is true, play the sound and open the dialog
-      if (questionNum === 6) {
-        new Audio(mandrakeSound).play();
-
-        // set the btns disabled while the audio is playing
-        setAnswerIsTrue(false);
-        setTimeout(() => {
-          dialog.current.open();
-          setAnswerIsTrue(true);
-        }, 4500);
-        return;
-      }
-
       dialog.current.open();
       setAnswerIsTrue(true);
     } else {
       setAnswerIsTrue(false);
       //setBtn(e.target);
-console.log(btns.current[index]);
+
       btns.current[index].style.background = "rgba(194, 0, 0, 0.7)";
       setTimeout(() => {
         btns.current[index].style.background = "";
@@ -184,13 +171,17 @@ console.log(btns.current[index]);
   //--------------------------------------------------------------
 
   const handleTest = () => {
+
     try {
       const getStatus = getLocaldata("status");
       let getCounter = getStatus.questionCounter;
       getCounter++;
-
+     
       setLocalData("status", { ...getStatus, questionCounter: getCounter });
-
+      if (getCounter === question.length) {
+         navigate("/last");
+        return
+      }
       //listen every game turn to the last question and invoke the onTurn function in context.jsx
       if (getCounter === question.length) {
         setQuestionNum(getCounter - 1);
