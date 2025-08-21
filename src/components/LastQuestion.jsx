@@ -9,10 +9,11 @@ import Modal from "./Modal";
 
 import { useCtx } from "../context/context";
 import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
+import { money } from "../assets";
 
 //-----------------------------------------------------------------
 import classes from "./Questions.module.css";
-import { lastQuestions } from "../lib/testData";
+import { lastQuestions, question } from "../lib/testData";
 
 // shuffle the answers function
 const shuffleArray = (array) => {
@@ -23,7 +24,18 @@ const shuffleArray = (array) => {
   return array;
 };
 
-//lastQuestion.tasks.map((item) => shuffleArray(item.answers));
+lastQuestions.tasks.map((item) => shuffleArray(item.answers));
+
+//-----------------------------------------------------------------
+// local storage functions
+
+const getLocaldata = (key) => {
+  return JSON.parse(localStorage.getItem(key));
+};
+
+const setLocalData = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
 
 //-----------------------------------------------------------------
 //-----------------------------------------------------------------
@@ -32,51 +44,89 @@ const LastQuestion = () => {
   const questionRef = useRef();
   const dialog = useRef();
 
+  const navigate = useNavigate();
+
   const [questionNum, setQuestionNum] = useState(0);
+  const [questionId, setQuestionId] = useState([]);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const [answerIsTrue, setAnswerIsTrue] = useState(true);
   const [feedback, setFeedback] = useState(ANSWER_FEEDBACK);
   const { onTurn, isEnd } = useCtx();
-  
-  lastQuestions.tasks.map((item) => shuffleArray(item.answers));
-
   //--------------------------------------------------------------
 
   useEffect(() => {
-    if (!isEnd) {
-      const container = questionRef.current;
-      let ctx;
-      if (questionNum >= 0) {
-        gsap.to(".answer-gsap", {
-          x: 0,
-          opacity: 1,
-          ease: "power1.inOut",
-          duration: 0.4,
-          stagger: 0.4,
-          delay: 0.7,
-        });
-
-        ctx = gsap.context(() => {
-          gsap.from(container, {
-            y: -50,
-            opacity: 0,
-            duration: 1,
-            delay: 0.2,
-            ease: "bounce.out",
-          });
-        });
+    try {
+      const getStatus = getLocaldata("status");
+      if (getStatus) {
+        setQuestionId(getStatus.questionId);
+      } else {
+        setQuestionId([7, 0, 2, 10, 6, 5, 3, 8, 9, 4, 1]);
       }
-      return () => ctx.revert();
+    } catch (error) {
+      console.error("Error fetching status from localStorage:", error);
     }
+    const container = questionRef.current;
+    let ctx;
+    if (questionNum >= 0) {
+      gsap.to(".answer-gsap", {
+        x: 0,
+        opacity: 1,
+        ease: "power1.inOut",
+        duration: 0.4,
+        stagger: 0.4,
+        delay: 0.7,
+      });
+
+      ctx = gsap.context(() => {
+        gsap.from(container, {
+          y: -50,
+          opacity: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: "bounce.out",
+        });
+      });
+    }
+
+    // handle image load time
+    const loaded = () => {
+      setImgLoaded(true);
+    };
+
+    if (document.readyState === "complete") {
+      loaded();
+    } else {
+      window.addEventListener("load", loaded);
+    }
+
+    return () => {
+      window.removeEventListener("load", loaded);
+      setImgLoaded(false);
+      ctx.revert();
+    };
   }, [questionNum]);
+
+  useEffect(() => {
+    gsap.fromTo(
+      "#money-image",
+      { scale: 0 },
+      { scale: 1, duration: 1, delay: 1.5, ease: "circ.out" }
+    );
+  }, [imgLoaded]);
 
   //--------------------------------------------------------------
   // check the selected answer and add feedback if it is wrong
   const isOk = (e, index, answer) => {
     if (answer) {
-      //dialog.current.open();
+      if (questionNum > 4) {
+        dialog.current.open();
+        return;
+      }
+
       setQuestionNum((prev) => prev + 1);
       setAnswerIsTrue(true);
+      setImgLoaded(false);
     } else {
       setAnswerIsTrue(false);
       //setBtn(e.target);
@@ -95,8 +145,26 @@ const LastQuestion = () => {
   };
 
   // check the QR code, and set the next question if the code is right
-  const handleGetScanId = (result) => {};
+  const handleGetScanId = (result) => {
+    dialog.current.close();
+    if (parseInt(result) === questionId[10]) {
+      //onTurn();
+      navigate("/diploma");
+      setFeedback(ANSWER_FEEDBACK);
+      return;
+    } else {
+      dialog.current.open();
+      setFeedback(QR_FEEDBACK);
+    }
+  };
 
+  //---------------------------------------------------------------
+  //---------------------------------------------------------------
+  //---------------------------------------------------------------
+  const handleTest = () => {
+    //onTurn();
+    navigate("/diploma");
+  };
   //-----------------------------------------------------------
   return (
     <>
@@ -105,12 +173,12 @@ const LastQuestion = () => {
         onCancel={handlCancel}
         getScanId={handleGetScanId}
         modalText={feedback}
-        actualQuestionNum={questionNum}
+        actualQuestionNum={10}
       />
 
       <section className={`${classes["container"]}`}>
         <div>
-          <Process numOfQuestion={9} numOfAllQuestion={10} />
+          <Process numOfQuestion={10} numOfAllQuestion={10} />
         </div>
         <div className={classes["question-section"]}>
           <div
@@ -122,6 +190,12 @@ const LastQuestion = () => {
               <h2>{lastQuestions.question}</h2>
             </div>
           </div>
+          <img
+            id="money-image"
+            src={money[questionNum]}
+            alt="hungarian money"
+            className={classes["money-img"]}
+          />
           <ul className={classes.list}>
             {lastQuestions.tasks[questionNum].answers.map((item, i) => (
               <QuestionItem
@@ -136,6 +210,10 @@ const LastQuestion = () => {
             ))}
           </ul>
           <Timer className={classes["timer-display"]} isEnd={isEnd} />
+        </div>
+
+        <div className={classes.test}>
+          <button onClick={handleTest}>{questionId[10]}</button>
         </div>
       </section>
     </>

@@ -1,4 +1,105 @@
-import LastQuestion from "../components/LastQuestion";
+export const lastQuestions = {
+  id: 10,
+  question: "Ki látható a pénzen?",
+  tasks: [
+    {
+      answers: [
+        {
+          answer: "II. Rákóczi Ferenc",
+          right: true,
+        },
+        {
+          answer: "Lionel Messi",
+          right: false,
+        },
+        {
+          answer: "Milák Kristóf",
+          right: false,
+        },
+      ],
+    },
+    {
+      answers: [
+        {
+          answer: "Mátyás király",
+          right: true,
+        },
+        {
+          answer: "Taylor Swift",
+          right: false,
+        },
+        {
+          answer: "Perselus Piton",
+          right: false,
+        },
+      ],
+    },
+    {
+      answers: [
+        {
+          answer: "Bethlen Gábor",
+          right: true,
+        },
+        {
+          answer: "Cristiano Ronaldo",
+          right: false,
+        },
+        {
+          answer: "Ariana Grande",
+          right: false,
+        },
+      ],
+    },
+    {
+      answers: [
+        {
+          answer: "Gróf Széchenyi István",
+          right: true,
+        },
+        {
+          answer: "Justin Bieber",
+          right: false,
+        },
+        {
+          answer: "Dua Lipa",
+          right: false,
+        },
+      ],
+    },
+    {
+      answers: [
+        {
+          answer: "Szent István király",
+          right: true,
+        },
+        {
+          answer: "Spider-Man",
+          right: false,
+        },
+        {
+          answer: "Vasember",
+          right: false,
+        },
+      ],
+    },
+    {
+      answers: [
+        {
+          answer: "Deák Ferenc",
+          right: true,
+        },
+        {
+          answer: "Szoboszlai Dominik",
+          right: false,
+        },
+        {
+          answer: "Toldi Miklós",
+          right: false,
+        },
+      ],
+    },
+  ],
+};
 
 export const question = [
   {
@@ -193,47 +294,6 @@ export const question = [
     ],
   },
 ];
-
-export const lastQuestions = {
-  id: 10,
-  question: "Milyen szimbólum található a képen látható pénzen?",
-  tasks: [
-    {
-      img: "",
-      answers: [
-        {
-          answer: "Kitartást és türelmet",
-          right: true,
-        },
-        {
-          answer: "Hogy mindig mindent azonnal megvegyél",
-          right: false,
-        },
-        {
-          answer: "Hogy a pénz végtelen",
-          right: false,
-        },
-      ],
-    },
-    {
-      img: "",
-      answers: [
-        {
-          answer: "másik",
-          right: true,
-        },
-        {
-          answer: "ez is másik",
-          right: false,
-        },
-        {
-          answer: "pláne másik",
-          right: false,
-        },
-      ],
-    },
-  ],
-};
 
 export const nextQrPlace = [
   "HUGI SZOBÁJÁBAN",

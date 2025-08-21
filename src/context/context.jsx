@@ -1,7 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-import { question } from "../lib/testData";
-
 /*import { db } from "../firebase";
 import {
   collection,
@@ -34,8 +32,9 @@ const shuffleArray = (array) => {
   }
   return array;
 };
-const questionId = question.map((i) => i.id);
-shuffleArray(questionId);
+const questionOfNum = [0,1,2,3,4,5,6,7,8,9,10]
+const questionId = shuffleArray(questionOfNum);
+
 
 //-----------------------------------------------------------
 //local storage functions

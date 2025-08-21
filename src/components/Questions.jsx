@@ -16,7 +16,6 @@ import classes from "./Questions.module.css";
 import { question } from "../lib/testData";
 import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
 
-
 //-----------------------------------------------------------------
 
 // shuffle the answers function
@@ -146,6 +145,11 @@ const Questions = () => {
         let getCounter = getStatus.questionCounter;
         getCounter++;
 
+        if (getCounter === question.length) {
+          navigate("/last");
+          return;
+        }
+
         setLocalData("status", { ...getStatus, questionCounter: getCounter });
 
         //listen every game turn to the last question and invoke the onTurn function in context.jsx
@@ -171,26 +175,17 @@ const Questions = () => {
   //--------------------------------------------------------------
 
   const handleTest = () => {
-
     try {
       const getStatus = getLocaldata("status");
       let getCounter = getStatus.questionCounter;
+
       getCounter++;
-     
-      setLocalData("status", { ...getStatus, questionCounter: getCounter });
       if (getCounter === question.length) {
-         navigate("/last");
-        return
-      }
-      //listen every game turn to the last question and invoke the onTurn function in context.jsx
-      if (getCounter === question.length) {
-        setQuestionNum(getCounter - 1);
-        getCounter--;
-        setLocalData("status", { ...getStatus, questionCounter: getCounter });
-        onTurn();
-        navigate("/diploma");
+        navigate("/last");
         return;
       }
+
+      setLocalData("status", { ...getStatus, questionCounter: getCounter });
 
       setQuestionNum(getCounter);
     } catch (error) {
