@@ -7,5 +7,5 @@ export const ANSWER_FEEDBACK = {
 export const QR_FEEDBACK = {
   qr: false,
   title: "rossz kódot olvastál be!",
-  paragraphe: "Keresd meg megfelelő jelet!",
+  paragraphe: "Keresd meg a megfelelő jelet!",
 };

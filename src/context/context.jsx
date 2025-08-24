@@ -125,8 +125,8 @@ export function CtxProvider(props) {
     if (!gameStatus) return;
 
     // Update gameEnd to true and save to localStorage
-    gameStatus.gameEnd = true;
-    setLocalData("status", gameStatus);
+    //gameStatus.gameEnd = true;
+    //setLocalData("status", gameStatus);
 
     // set the time for diploma data
     setDiplomaData({

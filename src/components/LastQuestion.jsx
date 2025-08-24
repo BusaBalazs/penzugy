@@ -148,7 +148,7 @@ const LastQuestion = () => {
   const handleGetScanId = (result) => {
     dialog.current.close();
     if (parseInt(result) === questionId[10]) {
-      //onTurn();
+      onTurn();
       navigate("/diploma");
       setFeedback(ANSWER_FEEDBACK);
       return;
@@ -162,7 +162,7 @@ const LastQuestion = () => {
   //---------------------------------------------------------------
   //---------------------------------------------------------------
   const handleTest = () => {
-    //onTurn();
+    onTurn();
     navigate("/diploma");
   };
   //-----------------------------------------------------------
