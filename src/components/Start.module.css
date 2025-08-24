@@ -74,3 +74,50 @@
   color: var(--color-orage-100);
   z-index: 20;
 }
+
+
+
+/******************************************************/
+/* unknown browser */
+/******************************************************/
+.wrong-browser-container {
+  width: 100vw;
+  min-height: 100vmax;
+  padding: 4em 1em;
+  background: no-repeat url("../../assets/alap_nyito.jpg");
+  background-size: cover;
+}
+
+.wrong-browser-content {
+  padding: 1.2em;
+  color: var(--blue-midle);
+  border-radius: 5px;
+}
+
+.wrong-browser-content h1 {
+  margin-bottom: 1em;
+}
+
+.wrong-browser-content p {
+  line-height: 1.5em;
+}
+
+.wrong-browser-content button {
+  display: inline-block;
+  font-size: var(--font-size-large);
+  padding: 1em 1.5em;
+  margin-top: 2em;
+  font-weight: 900;
+  text-transform: uppercase;
+  background-color: var(--blue-900);
+  border-radius: var(--border-radius-s);
+  border-top: solid 2px var(--white);
+  color: var(--white);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+}
+
+.succes-copy-text {
+  font-size: var(--font-size-large);
+  margin-top: 1em;
+  color: var(--blue-midle);
+}
