@@ -126,7 +126,7 @@ const LastQuestion = () => {
 
       setQuestionNum((prev) => prev + 1);
       setAnswerIsTrue(true);
-      setImgLoaded(false);
+      setImgLoaded(false);y
     } else {
       setAnswerIsTrue(false);
       //setBtn(e.target);
@@ -212,9 +212,9 @@ const LastQuestion = () => {
           <Timer className={classes["timer-display"]} isEnd={isEnd} />
         </div>
 
-        <div className={classes.test}>
+        {/* <div className={classes.test}>
           <button onClick={handleTest}>{questionId[10]}</button>
-        </div>
+        </div> */}
       </section>
     </>
   );
