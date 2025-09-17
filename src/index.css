@@ -41,7 +41,7 @@
   --color-black-bg: rgb(0, 0, 0, 0.8);
 
   /*new colors */
-  --blue-900: #0b3a74;
+  --blue-900: #19191a;
   --blue-700: #165ea8;
   --blue-500: #2a7bd3;
   --blue-300: #74a9f5;
@@ -81,7 +81,7 @@
 body {
   width: 100%;
   min-height: 100vmax;
-   color: var(--blue-900);
+  color: var(--blue-900);
   background: var(--color-bg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -89,6 +89,7 @@ body {
 }
 
 img {
+  max-width: 100%;
   display: block;
 }
 

@@ -1,22 +1,19 @@
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import gsap from "gsap";
 
-import { useCtx } from "../context/context";
+import Process from "./Process";
 
-//-----------------------------------------------------------------
 import QuestionItem from "./QuestionItem";
 import Modal from "./Modal";
-import Process from "./Process";
-import Timer from "./Timer";
+
+import { useCtx } from "../context/context";
+import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
+import { backgrounds } from "../assets/birthday/index";
+
 //-----------------------------------------------------------------
 import classes from "./Questions.module.css";
-
-//-----------------------------------------------------------------
-import { question } from "../lib/testData";
-import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
-
-//-----------------------------------------------------------------
+import { lastQuestions, question } from "../lib/testData";
 
 // shuffle the answers function
 const shuffleArray = (array) => {
@@ -27,7 +24,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-question.map((item) => shuffleArray(item.answers));
+lastQuestions.map((item) => shuffleArray(item.answers));
 
 //-----------------------------------------------------------------
 // local storage functions
@@ -42,80 +39,59 @@ const setLocalData = (key, value) => {
 
 //-----------------------------------------------------------------
 //-----------------------------------------------------------------
-//-----------------------------------------------------------------
-const Questions = () => {
-  const dialog = useRef();
-  const navigate = useNavigate();
-
-  const [answerIsTrue, setAnswerIsTrue] = useState(true);
-  const [questionNum, setQuestionNum] = useState(0);
-  const [feedback, setFeedback] = useState(ANSWER_FEEDBACK);
-  const [questionId, setQuestionId] = useState([]);
-
+const LastQuestion = () => {
   const btns = useRef([]);
   const questionRef = useRef();
+  const dialog = useRef();
+
+  const navigate = useNavigate();
+
+  const [questionNum, setQuestionNum] = useState(0);
+  const [questionId, setQuestionId] = useState([]);
+
+  const [answerIsTrue, setAnswerIsTrue] = useState(true);
+  const [feedback, setFeedback] = useState(ANSWER_FEEDBACK);
   const { onTurn, isEnd } = useCtx();
-
-  //---------------------------------------------------------------
-
   //--------------------------------------------------------------
 
   useEffect(() => {
-    const getStatus = getLocaldata("status");
-    let getCounter = getStatus.questionCounter;
-    let gameEnd = getStatus.gameEnd;
-    // when the page loded or reloaded this useEffect set the actual question number, if the game just has begun set the first question
-    if (getCounter === 0) {
-      setQuestionNum(0);
-    } else {
-      setQuestionNum(getCounter);
-    }
-
-    //listen every game turn to the last question and invoke the onTurn function in context.jsx
-
-    if (gameEnd && getCounter + 1 === question.length) {
-      onTurn();
-    }
-
-    setQuestionId(getStatus.questionId);
-  }, []);
-
-  //--------------------------------------------------------------
-
-  useLayoutEffect(() => {
-    if (!isEnd) {
-      const container = questionRef.current;
-      let ctx;
-      if (questionNum >= 0) {
-        gsap.to(".answer-gsap", {
-          x: 0,
-          opacity: 1,
-          ease: "power1.inOut",
-          duration: 0.4,
-          stagger: 0.4,
-          delay: 0.7,
-        });
-
-        ctx = gsap.context(() => {
-          gsap.from(container, {
-            y: -50,
-            opacity: 0,
-            duration: 1,
-            delay: 0.2,
-            ease: "bounce.out",
-          });
-        });
+    try {
+      const getStatus = getLocaldata("status");
+      if (getStatus) {
+        setQuestionNum(getStatus.questionCounter);
       }
-      return () => ctx.revert();
+    } catch (error) {
+      console.error("Error fetching status from localStorage:", error);
     }
+    gsap.fromTo(
+      "#question-gsap",
+      { y: -50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, delay: 2.7, ease: "bounce.out" }
+    );
+
+    gsap.to(".answer-gsap", {
+      x: 0,
+      opacity: 1,
+      ease: "power1.inOut",
+      duration: 0.4,
+      stagger: 0.4,
+      delay: 3.2,
+    });
   }, [questionNum]);
 
   //--------------------------------------------------------------
-
   // check the selected answer and add feedback if it is wrong
   const isOk = (e, index, answer) => {
     if (answer) {
-      dialog.current.open();
+      console.log("actual question:" + questionNum);
+      if (questionNum >= 17) {
+        //dialog.current.open();
+        navigate("/video");
+        return;
+      }
+
+      setQuestionNum((prev) => prev + 1);
+      setLocalData("status", { questionCounter: questionNum + 1 });
       setAnswerIsTrue(true);
     } else {
       setAnswerIsTrue(false);
@@ -134,66 +110,29 @@ const Questions = () => {
     dialog.current.close();
   };
 
-  //--------------------------------------------------------------
-
   // check the QR code, and set the next question if the code is right
   const handleGetScanId = (result) => {
     dialog.current.close();
-    if (parseInt(result) === questionId[questionNum]) {
-      try {
-        const getStatus = getLocaldata("status");
-        let getCounter = getStatus.questionCounter;
-        getCounter++;
-
-        if (getCounter === question.length) {
-          navigate("/last");
-          return;
-        }
-
-        setLocalData("status", { ...getStatus, questionCounter: getCounter });
-
-        //listen every game turn to the last question and invoke the onTurn function in context.jsx
-        if (getCounter === question.length) {
-          setQuestionNum(getCounter - 1);
-          getCounter--;
-          setLocalData("status", { ...getStatus, questionCounter: getCounter });
-          onTurn();
-          navigate("/diploma");
-          return;
-        }
-        setQuestionNum(getCounter);
-        setFeedback(ANSWER_FEEDBACK);
-      } catch (error) {
-        console.log(error);
-      }
+    if (parseInt(result) === questionId[10]) {
+      onTurn();
+      navigate("/diploma");
+      setFeedback(ANSWER_FEEDBACK);
+      return;
     } else {
       dialog.current.open();
       setFeedback(QR_FEEDBACK);
     }
   };
 
-  //--------------------------------------------------------------
-
+  //---------------------------------------------------------------
+  //---------------------------------------------------------------
+  //---------------------------------------------------------------
   const handleTest = () => {
-    try {
-      const getStatus = getLocaldata("status");
-      let getCounter = getStatus.questionCounter;
-
-      getCounter++;
-      if (getCounter === question.length) {
-        navigate("/last");
-        return;
-      }
-
-      setLocalData("status", { ...getStatus, questionCounter: getCounter });
-
-      setQuestionNum(getCounter);
-    } catch (error) {
-      console.log(error);
-    }
+    onTurn();
+    navigate("/diploma");
   };
 
-  //--------------------------------------------------------------
+  //-----------------------------------------------------------
   return (
     <>
       <Modal
@@ -201,28 +140,29 @@ const Questions = () => {
         onCancel={handlCancel}
         getScanId={handleGetScanId}
         modalText={feedback}
-        actualQuestionNum={questionNum}
+        actualQuestionNum={10}
       />
+
       <section className={`${classes["container"]}`}>
         <div>
           <Process
             numOfQuestion={questionNum}
-            numOfAllQuestion={question.length}
+            numOfAllQuestion={lastQuestions.length}
           />
         </div>
         <div className={classes["question-section"]}>
+          <img src={backgrounds[questionNum]} alt="" className={classes["bg-img"]} />
           <div
             ref={questionRef}
             id="question-gsap"
             className={classes["question-container"]}
           >
             <div className={classes["question"]}>
-              <h2>{question[questionNum].question}</h2>
-              <code>{question[questionNum].operation}</code>
+              <h2>{lastQuestions[questionNum].question}</h2>
             </div>
           </div>
           <ul className={classes.list}>
-            {question[questionNum].answers.map((item, i) => (
+            {lastQuestions[questionNum].answers.map((item, i) => (
               <QuestionItem
                 key={item.answer}
                 CheckAnswer={(e, index = i) => isOk(e, index, item.right)}
@@ -234,15 +174,14 @@ const Questions = () => {
               </QuestionItem>
             ))}
           </ul>
-          <Timer className={classes["timer-display"]} isEnd={isEnd} />
         </div>
 
         {/* <div className={classes.test}>
-          <button onClick={handleTest}>{questionId[questionNum]}</button>
+          <button onClick={handleTest}>{questionId[10]}</button>
         </div> */}
       </section>
     </>
   );
 };
 
-export default Questions;
+export default LastQuestion;

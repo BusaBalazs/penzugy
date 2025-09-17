@@ -24,7 +24,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-lastQuestions.tasks.map((item) => shuffleArray(item.answers));
+lastQuestions.map((item) => shuffleArray(item.answers));
 
 //-----------------------------------------------------------------
 // local storage functions

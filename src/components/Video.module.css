@@ -1,0 +1,12 @@
+.start-btn {
+  font-size: var(--font-size-l);
+  padding: 0.2em 1.1em;
+  margin-top: 1em;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--blue-100);
+  background-color: #0b3a74cb;
+  border-radius: var(--border-radius-s);
+  box-shadow: 0 10px 30px rgba(58, 146, 204, 0.4);
+  letter-spacing: 0.1em;
+}

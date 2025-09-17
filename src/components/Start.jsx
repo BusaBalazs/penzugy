@@ -75,7 +75,7 @@ const Start = () => {
   const navigate = useNavigate();
 
   const browser = detectBrowser();
- 
+
   //from context.jsx
   const { startGame } = useCtx();
 
@@ -92,6 +92,18 @@ const Start = () => {
           opacity: 1,
           ease: "expo.out",
           duration: 1,
+          delay: 0.3,
+        }
+      );
+      gsap.fromTo(
+        "#card-gsap",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          ease: "expo.out",
+          duration: 1.5,
           delay: 0.3,
         }
       );
@@ -112,38 +124,41 @@ const Start = () => {
 
   //invoke the startGame function in context.jsx
   const handleStart = () => {
-    startGame();
+    //startGame();
     navigate("/questions");
   };
 
   //-----------------------------------------------------------
   return (
-    <>
-      {!browser ? (
-        <UnkownBrowser />
-      ) : (
-        <section className={classes["start-page"]}>
-          <div className={classes["card"]}>
-            <div className={classes["welcome-text"]}>
-              <h2>Induljon a játékos pénzügyi utazás!</h2>
-              <p>
-                Olvasd be a QR-kódot, válaszolj a kvízre, és ha jól teljesítesz,
-                a térkép segít továbblépni.
-              </p>
-              <p>
-                Szórakozva tanulhatod meg, hogyan gazdálkodj okosan a
-                zsebpénzeddel.
-              </p>
-            </div>
-            <div onClick={handleStart} className={classes["btn-container"]}>
-              <button id="start-btn" className={classes["start-btn"]}>
-                start
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
-    </>
+    <section className={classes["start-page"]}>
+      <div id="card-gsap" className={classes["card"]}>
+        <div className={classes["welcome-text"]}>
+          <p>
+            18 év — egy fordulópont az életben, amikor a gyermekkor lassan
+            emlékké válik, és megnyílik az út a felnőtté válás felé. Ez a
+            születésnap nem csupán egy újabb év kezdete, hanem egy különleges
+            mérföldkő, amelyet méltó módon kell ünnepelni.
+          </p>
+          <br />
+          <p>
+            Ezen a napon azonban nemcsak ajándék vár rád, hanem egy különleges
+            kihívás is. Minden feladat, üzenet és meglepetés egyetlen kód mögé
+            lett elrejtve. Ez a QR-kód nem pusztán egy kapu, hanem egy út,
+            amelyen végigmenve ünnepélyesen léphetsz be egy új korszakba.
+          </p>
+          <br />
+          <p>
+            Készen állsz, hogy felfedezd, milyen titkok és jókívánságok rejlenek
+            benne? Akkor hát induljon a 18. születésnapi kalandod!
+          </p>
+        </div>
+        <div onClick={handleStart} className={classes["btn-container"]}>
+          <button id="start-btn" className={classes["start-btn"]}>
+            INDULÁS
+          </button>
+        </div>
+      </div>
+    </section>
   );
 };
 

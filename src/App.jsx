@@ -4,9 +4,9 @@ import { useCtx } from "./context/context";
 
 import StartPage from "./pages/StartPage.jsx";
 import QuestionPage from "./pages/QuestionPage.jsx";
-import DiplomaPage from "./pages/DiplomaPage.jsx";
-import LastQuestionPage from "./pages/LastQuestionPage.jsx";
-
+import VideoPage from "./pages/VideoPage.jsx";
+import PuzzlePage from "./pages/PuzzlePage.jsx";
+import EndPage from "./pages/EndPage.jsx";
 //-----------------------------------------------------------
 const routs = createBrowserRouter([
   {
@@ -18,20 +18,22 @@ const routs = createBrowserRouter([
     element: <QuestionPage />,
   },
   {
-    path: "/diploma",
-    element: <DiplomaPage />,
+    path: "/video",
+    element: <VideoPage />,
   },
   {
-    path: "/last",
-    element: <LastQuestionPage />,
+    path: "/puzzle",
+    element: <PuzzlePage />,
+  },
+  {
+    path: "/end",
+    element: <EndPage />,
   },
 ]);
 
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 const App = () => {
-
-
   //-----------------------------------------------------------
   return <RouterProvider router={routs} />;
 };

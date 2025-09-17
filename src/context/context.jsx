@@ -32,9 +32,8 @@ const shuffleArray = (array) => {
   }
   return array;
 };
-const questionOfNum = [0,1,2,3,4,5,6,7,8,9,10]
+const questionOfNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const questionId = shuffleArray(questionOfNum);
-
 
 //-----------------------------------------------------------
 //local storage functions
@@ -81,9 +80,9 @@ export function CtxProvider(props) {
   // set the initial game status
   useEffect(() => {
     const gameStatus = getLocaldata("status");
-
+    const initialData = { questionCounter: 0 };
     if (!gameStatus) {
-      setLocalData("status", dataInit);
+      setLocalData("status", initialData);
     }
 
     if (gameStatus) {
