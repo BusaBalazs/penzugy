@@ -57,18 +57,19 @@ import bg_3 from "./bg_3.png";
 import bg_4 from "./bg_4.png";
 import bg_5 from "./bg_5.png";
 import bg_6 from "./bg_6.png";
-//import bg_7 from "./bg_7.png";
-//import bg_8 from "./bg_8.png";
-//import bg_9 from "./bg_9.png";
-//import bg_10 from "./bg_10.png";
-//import bg_11 from "./bg_11.png";
+import bg_7 from "./bg_7.png";
+import bg_8 from "./bg_8.png";
+import bg_9 from "./bg_9.png";
+import bg_10 from "./bg_10.png";
+import bg_11 from "./bg_11.png";
 import bg_12 from "./bg_12.png";
 import bg_13 from "./bg_13.png";
 import bg_14 from "./bg_14.png";
 import bg_15 from "./bg_15.png";
-//import bg_16 from "./bg_16.png";
-//import bg_17 from "./bg_17.png";
-//import bg_18 from "./bg_18.png";
+import bg_16 from "./bg_16.png";
+import bg_17 from "./bg_17.png";
+import bg_18 from "./bg_18.png";
+import bg_19 from "./bg_19.png";
 
 export const backgrounds = [
   bg_0,
@@ -78,19 +79,17 @@ export const backgrounds = [
   bg_4,
   bg_5,
   bg_6,
-
-  bg_12,
-  bg_13,
-  bg_14,
-  bg_15,
-];
-
-/*bg_7,
+  bg_7,
   bg_8,
   bg_9,
   bg_10,
   bg_11,
-   bg_16,
+  bg_12,
+  bg_13,
+  bg_14,
+  bg_15,
+  bg_16,
   bg_17,
   bg_18,
-  */
+  bg_19,
+];

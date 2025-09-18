@@ -91,7 +91,7 @@ export function CtxProvider(props) {
         time: gameStatus.time,
       });
     }
-
+console.log("running ctx")
     gameStatus && setIsStart(gameStatus.isStart);
   }, []);
 

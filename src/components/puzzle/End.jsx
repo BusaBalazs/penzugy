@@ -14,8 +14,8 @@ const End = () => {
     );
     gsap.fromTo(
       "#plane",
-      { x: 400 },
-      { x: -50, delay: 0.2, ease: "power1.inOut", duration: 1.5 }
+      { y: 90, x: 400, rotate: 20 },
+      { y: 0, x: -35, delay: 0.2, ease: "power1.inOut", duration: 1.5, rotate: 10 }
     );
   });
   return (

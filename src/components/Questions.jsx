@@ -49,11 +49,24 @@ const LastQuestion = () => {
   const [questionNum, setQuestionNum] = useState(0);
   const [questionId, setQuestionId] = useState([]);
 
+    // Add new state for preloaded image
+  const [nextImage, setNextImage] = useState(null);
+
   const [answerIsTrue, setAnswerIsTrue] = useState(true);
   const [feedback, setFeedback] = useState(ANSWER_FEEDBACK);
   const { onTurn, isEnd } = useCtx();
-  //--------------------------------------------------------------
 
+  //--------------------------------------------------------------
+  // Preload next image function
+  const preloadNextImage = (nextIndex) => {
+    if (nextIndex < backgrounds.length) {
+      const img = new Image();
+      img.src = backgrounds[nextIndex];
+      setNextImage(img);
+    }
+  };
+  
+  //--------------------------------------------------------------
   useEffect(() => {
     try {
       const getStatus = getLocaldata("status");
@@ -63,6 +76,10 @@ const LastQuestion = () => {
     } catch (error) {
       console.error("Error fetching status from localStorage:", error);
     }
+
+    // Preload next image
+    preloadNextImage(questionNum + 1);
+    
     gsap.fromTo(
       "#question-gsap",
       { y: -50, opacity: 0 },
@@ -77,6 +94,12 @@ const LastQuestion = () => {
       stagger: 0.4,
       delay: 3.2,
     });
+
+     gsap.fromTo(
+      "#bg-img-gsap",
+      { x: -360, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: "power2.out" }
+    );
   }, [questionNum]);
 
   //--------------------------------------------------------------
@@ -151,7 +174,12 @@ const LastQuestion = () => {
           />
         </div>
         <div className={classes["question-section"]}>
-          <img src={backgrounds[questionNum]} alt="" className={classes["bg-img"]} />
+          <img
+            id="bg-img-gsap"
+            src={backgrounds[questionNum]}
+            alt=""
+            className={classes["bg-img"]}
+          />
           <div
             ref={questionRef}
             id="question-gsap"
