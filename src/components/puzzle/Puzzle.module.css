@@ -35,27 +35,3 @@
   border: solid 1px white;
 }
 
-.end-container {
-  width: 100vw;
-  min-height: 100vh;
-  padding: 1em;
-  display: grid;
-  place-items: center;
-  background: url("../../assets/birthday/travel.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.end-container p {
-  font-size: 1.8rem;
-  padding: 0.5em ;
-  text-wrap: balance;
-  margin: 1em auto;
-  font-weight: 900;
-  color: rgb(14, 46, 68);
-  background-color: rgba(255, 255, 255, 0.85);
-  border-left: 4px solid #e70000;
-  border-right: 4px solid #0011ff;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.342);
-  transform: skewX(-10deg);
-}

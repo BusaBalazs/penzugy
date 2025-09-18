@@ -4,33 +4,32 @@
   padding: 1em;
   font-family: var(--font-title);
   letter-spacing: 0.1em;
-  background: url("../assets/birthday/alt_bg.png");
+  background: url("../assets/birthday/bg_start.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: -50px;
 }
 
 .card {
-  padding:2em;
+  padding: 2em;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   box-shadow: 0 5px 15px rgba(60, 68, 68, 0.6);
   border: 2px solid #e3edff52;
-  
 }
 
 .welcome-text {
   font-size: var(--font-size-m);
   margin-bottom: 1em;
-  color:black;
+  color: black;
   text-wrap: balance;
-  
-   font-weight: 600;
+
+  font-weight: 600;
 }
 
 .welcome-text h2 {
-  font-size:clamp(20px, 2.4vw, 32px);
+  font-size: clamp(20px, 2.4vw, 32px);
   margin-bottom: 1.5em;
   text-shadow: 1px 2px 1px var(--blue-900);
   font-weight: 900;
@@ -41,11 +40,11 @@
   font-size: var(--font-size-l);
   padding: 0.2em 1.1em;
   margin-top: 1em;
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
   color: var(--blue-100);
-  background-color: #0b3a74cb;
-  border-radius: var(--border-radius-s);
+  background-color: #0b3568a1;
+  border-radius: 5px;
   box-shadow: 0 10px 30px rgba(58, 146, 204, 0.4);
   letter-spacing: 0.1em;
 }
@@ -73,8 +72,6 @@
   color: var(--color-orage-100);
   z-index: 20;
 }
-
-
 
 /******************************************************/
 /* unknown browser */

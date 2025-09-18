@@ -49,6 +49,9 @@ export const maps = [
 
 import plane from "./plane.png";
 export { plane };
+
+import travelBg from "../../assets/birthday/travel_2.png";
+export { travelBg };
 //------------------------------------------------------------------
 import bg_0 from "./bg_0.png";
 import bg_1 from "./bg_1.png";
@@ -69,7 +72,6 @@ import bg_15 from "./bg_15.png";
 import bg_16 from "./bg_16.png";
 import bg_17 from "./bg_17.png";
 import bg_18 from "./bg_18.png";
-import bg_19 from "./bg_19.png";
 
 export const backgrounds = [
   bg_0,
@@ -91,5 +93,4 @@ export const backgrounds = [
   bg_16,
   bg_17,
   bg_18,
-  bg_19,
 ];

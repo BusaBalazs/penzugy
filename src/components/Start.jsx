@@ -91,8 +91,8 @@ const Start = () => {
           scale: 1,
           opacity: 1,
           ease: "expo.out",
-          duration: 1,
-          delay: 0.3,
+          duration: 2,
+          delay: 3,
         }
       );
       gsap.fromTo(
@@ -104,7 +104,7 @@ const Start = () => {
           opacity: 1,
           ease: "expo.out",
           duration: 1.5,
-          delay: 0.3,
+          delay: 3,
         }
       );
     };

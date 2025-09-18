@@ -5,7 +5,7 @@ import gsap from "gsap";
 import Process from "./Process";
 
 import QuestionItem from "./QuestionItem";
-import Modal from "./Modal";
+
 
 import { useCtx } from "../context/context";
 import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
@@ -158,13 +158,7 @@ const LastQuestion = () => {
   //-----------------------------------------------------------
   return (
     <>
-      <Modal
-        ref={dialog}
-        onCancel={handlCancel}
-        getScanId={handleGetScanId}
-        modalText={feedback}
-        actualQuestionNum={10}
-      />
+  
 
       <section className={`${classes["container"]}`}>
         <div>

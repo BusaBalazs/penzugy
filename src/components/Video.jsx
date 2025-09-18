@@ -22,7 +22,7 @@ const Video = () => {
             className={classes["start-btn"]}
             onClick={handleStart}
           >
-            nyisd ki!
+            bontsd ki az ajándékot!
           </button>
         </div>
       </div>

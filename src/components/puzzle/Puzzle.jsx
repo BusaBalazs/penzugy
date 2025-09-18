@@ -61,7 +61,7 @@ console.log(dropImgs)
 
   return (
     <div className={classes["container"]}>
-      <h2>Rakd a képeket a megfelelő helyre!</h2>
+      <h2>Húzd a képeket a megfelelő helyre!</h2>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         <div className={classes["grid"]}>
           {DROPAREA.map((item, index) => (
