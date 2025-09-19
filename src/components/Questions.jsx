@@ -6,7 +6,6 @@ import Process from "./Process";
 
 import QuestionItem from "./QuestionItem";
 
-
 import { useCtx } from "../context/context";
 import { ANSWER_FEEDBACK, QR_FEEDBACK } from "../lib/constatnt";
 import { backgrounds } from "../assets/birthday/index";
@@ -49,23 +48,17 @@ const LastQuestion = () => {
   const [questionNum, setQuestionNum] = useState(0);
   const [questionId, setQuestionId] = useState([]);
 
-    // Add new state for preloaded image
-  const [nextImage, setNextImage] = useState(null);
+  // Add new state for preloaded image
+  const [displayedBg, setDisplayedBg] = useState(backgrounds[0]);
 
   const [answerIsTrue, setAnswerIsTrue] = useState(true);
-  const [feedback, setFeedback] = useState(ANSWER_FEEDBACK);
-  const { onTurn, isEnd } = useCtx();
 
-  //--------------------------------------------------------------
-  // Preload next image function
-  const preloadNextImage = (nextIndex) => {
-    if (nextIndex < backgrounds.length) {
-      const img = new Image();
-      img.src = backgrounds[nextIndex];
-      setNextImage(img);
-    }
+   // keep or remove this helper; don't store Image object in state
+  const preload = (src) => {
+    const img = new Image();
+    img.src = src;
   };
-  
+
   //--------------------------------------------------------------
   useEffect(() => {
     try {
@@ -77,36 +70,56 @@ const LastQuestion = () => {
       console.error("Error fetching status from localStorage:", error);
     }
 
-    // Preload next image
-    preloadNextImage(questionNum + 1);
-    
-    gsap.fromTo(
-      "#question-gsap",
-      { y: -50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, delay: 2.7, ease: "bounce.out" }
-    );
+    let cancelled = false;
+    const src = backgrounds[questionNum];
 
-    gsap.to(".answer-gsap", {
-      x: 0,
-      opacity: 1,
-      ease: "power1.inOut",
-      duration: 0.4,
-      stagger: 0.4,
-      delay: 3.2,
-    });
+    const img = new Image();
+    img.onload = () => {
+      if (cancelled) return;
+      setDisplayedBg(src);
 
-     gsap.fromTo(
-      "#bg-img-gsap",
-      { x: -360, opacity: 0 },
-      { x: 0, opacity: 1, duration: 1, ease: "power2.out" }
-    );
+      // preload next image
+      const nextIdx = questionNum + 1;
+      if (nextIdx < backgrounds.length) preload(backgrounds[nextIdx]);
+
+      // run GSAP after the new image is ready
+      gsap.fromTo(
+        "#question-gsap",
+        { y: -50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 2.8, ease: "bounce.out" }
+      );
+
+      gsap.to(".answer-gsap", {
+        x: 0,
+        opacity: 1,
+        ease: "power1.inOut",
+        duration: 0.4,
+        stagger: 0.4,
+        delay: 3,
+      });
+
+      gsap.fromTo(
+        "#bg-img-gsap",
+        { x: -360, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.9, ease: "power2.out" }
+      );
+    };
+    img.onerror = () => {
+      if (cancelled) return;
+      // fallback: still set displayedBg so UI doesn't remain stuck
+      setDisplayedBg(src);
+    };
+    img.src = src;
+
+    return () => {
+      cancelled = true;
+    };
   }, [questionNum]);
 
   //--------------------------------------------------------------
   // check the selected answer and add feedback if it is wrong
   const isOk = (e, index, answer) => {
     if (answer) {
-      console.log("actual question:" + questionNum);
       if (questionNum >= 17) {
         //dialog.current.open();
         navigate("/video");
@@ -128,38 +141,9 @@ const LastQuestion = () => {
     }
   };
 
-  //---------------------------------------------------------------
-  const handlCancel = () => {
-    dialog.current.close();
-  };
-
-  // check the QR code, and set the next question if the code is right
-  const handleGetScanId = (result) => {
-    dialog.current.close();
-    if (parseInt(result) === questionId[10]) {
-      onTurn();
-      navigate("/diploma");
-      setFeedback(ANSWER_FEEDBACK);
-      return;
-    } else {
-      dialog.current.open();
-      setFeedback(QR_FEEDBACK);
-    }
-  };
-
-  //---------------------------------------------------------------
-  //---------------------------------------------------------------
-  //---------------------------------------------------------------
-  const handleTest = () => {
-    onTurn();
-    navigate("/diploma");
-  };
-
   //-----------------------------------------------------------
   return (
     <>
-  
-
       <section className={`${classes["container"]}`}>
         <div>
           <Process
@@ -170,7 +154,7 @@ const LastQuestion = () => {
         <div className={classes["question-section"]}>
           <img
             id="bg-img-gsap"
-            src={backgrounds[questionNum]}
+            src={displayedBg}
             alt=""
             className={classes["bg-img"]}
           />
@@ -197,10 +181,6 @@ const LastQuestion = () => {
             ))}
           </ul>
         </div>
-
-        {/* <div className={classes.test}>
-          <button onClick={handleTest}>{questionId[10]}</button>
-        </div> */}
       </section>
     </>
   );

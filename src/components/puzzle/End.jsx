@@ -16,8 +16,8 @@ const End = () => {
       "#plane",
       { y: 220, x: 400, rotate: 20 },
       {
-        y: 190,
-        x: 15,
+        y: 50,
+        x: 35,
         delay: 0.2,
         ease: "power1.inOut",
         duration: 1.5,
